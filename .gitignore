@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# confidential material — only encrypted (.gpg) files may be committed
+# see confidential/README.md
+confidential/**
+!confidential/README.md
+!confidential/.gitkeep
+!confidential/**/*.gpg

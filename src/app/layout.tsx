@@ -8,8 +8,8 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "داشبرد مدیریت صنعتی",
-  description: "داشبرد مدیریتی صنعتی برای پایش تولید، تجهیزات و هشدارها",
+  title: "Industrial Management Dashboard",
+  description: "Industrial management dashboard for monitoring production, equipment and alerts",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

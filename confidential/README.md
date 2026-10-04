@@ -1,37 +1,37 @@
-# محتوای محرمانه (مثلاً پرونده ثبت اختراع)
+# Confidential Content (e.g., Patent Filing)
 
-هدف این پوشه نگهداری اسنادی است که **نباید** به صورت متن ساده (plaintext) وارد تاریخچه گیت شوند —
-مثل محتوای ثبت اختراع، فرمول‌ها، یا هر مطلبی که فقط باید توسط افراد مشخص قابل خواندن باشد و
-سایر اعضای تیمی که به این ریپازیتوری دسترسی دارند نباید جزئیات آن را ببینند.
+The purpose of this folder is to hold documents that **must not** enter the git history in plaintext —
+such as patent content, formulas, or anything that should only be readable by specific people and
+that other team members with access to this repository should not see in detail.
 
-قانون این پوشه در `.gitignore` تعریف شده: هر فایلی داخل `confidential/` نادیده گرفته می‌شود،
-**به جز** فایل‌هایی که پسوند `.gpg` دارند (یعنی از قبل رمزنگاری شده‌اند). به این ترتیب حتی اگر
-به اشتباه فایل متنی را `git add` کنید، وارد کامیت نمی‌شود.
+The rule for this folder is defined in `.gitignore`: every file inside `confidential/` is ignored,
+**except** files with the `.gpg` extension (i.e., already encrypted). This way, even if you
+mistakenly `git add` a plaintext file, it will not enter the commit.
 
-## چرا رمزنگاری قبل از کامیت، نه بعد از آن؟
+## Why encrypt before committing, not after?
 
-تاریخچه‌ی گیت غیرقابل‌حذف است. اگر یک بار نسخه‌ی متن‌ساده وارد یک کامیت شود، حتی با حذف آن در
-کامیت بعدی، همچنان در تاریخچه (و در کپی‌های local هر همکار) باقی می‌ماند. پس باید فایل را **قبل**
-از هر `git add` رمزنگاری کرد.
+Git history is permanent. If a plaintext version enters a commit once, even if it is deleted in
+a later commit, it remains in the history (and in every collaborator's local copy). So the file must be
+encrypted **before** any `git add`.
 
-## روش پیشنهادی: GPG نامتقارن (فقط شما قابل بازگشایی)
+## Recommended Method: Asymmetric GPG (only you can decrypt)
 
-### ۱) ساخت کلید GPG شخصی (فقط یک‌بار، روی سیستم خودتان)
+### 1) Create a personal GPG key (once, on your own machine)
 
 ```bash
 gpg --full-generate-key
 ```
 
-نوع کلید پیش‌فرض (RSA) و طول ۴۰۹۶ بیت را انتخاب کنید و یک passphrase قوی برای آن بگذارید.
-سپس ایمیل مرتبط با کلید را با این دستور پیدا کنید:
+Choose the default key type (RSA) and a length of 4096 bits and set a strong passphrase for it.
+Then find the email associated with the key with this command:
 
 ```bash
 gpg --list-secret-keys --keyid-format long
 ```
 
-### ۲) رمزنگاری سند قبل از افزودن به ریپو
+### 2) Encrypt the document before adding it to the repo
 
-فایل متنی خود را (مثلاً `patent-disclosure.md`) در همین پوشه `confidential/` بگذارید، سپس:
+Put your text file (e.g., `patent-disclosure.md`) in this `confidential/` folder, then:
 
 ```bash
 gpg --encrypt --recipient your-email@example.com \
@@ -39,37 +39,37 @@ gpg --encrypt --recipient your-email@example.com \
   confidential/patent-disclosure.md
 ```
 
-بعد از این مرحله، فایل متنی اصلی را از داخل پوشه پاک کنید (یا جای امن دیگری نگه دارید) —
-فقط فایل `.gpg` باید داخل ریپو بماند:
+After this step, delete the original plaintext file from the folder (or keep it in another safe place) —
+only the `.gpg` file should remain in the repo:
 
 ```bash
 rm confidential/patent-disclosure.md
 git add confidential/patent-disclosure.md.gpg
-git commit -m "افزودن سند محرمانه رمزنگاری‌شده"
+git commit -m "Add encrypted confidential document"
 ```
 
-اعضای تیم با pull کردن ریپو فقط یک فایل باینری رمزنگاری‌شده می‌بینند و بدون کلید خصوصی شما
-قادر به بازکردن آن نیستند.
+Team members who pull the repo will see only an encrypted binary file and cannot
+open it without your private key.
 
-### ۳) بازخوانی سند (فقط توسط دارنده کلید خصوصی)
+### 3) Decrypting the document (only by the private key holder)
 
 ```bash
 gpg --decrypt confidential/patent-disclosure.md.gpg > confidential/patent-disclosure.md
 ```
 
-### افزودن گیرنده دوم (مثلاً وکیل ثبت اختراع یا هم‌بنیان‌گذار)
+### Adding a Second Recipient (e.g., a patent attorney or co-founder)
 
-می‌توانید سند را برای چند نفر همزمان رمزنگاری کنید تا هرکدام با کلید خصوصی خودشان بازش کنند:
+You can encrypt the document for several people at once so each can open it with their own private key:
 
 ```bash
 gpg --encrypt --recipient your-email@example.com --recipient partner-email@example.com \
   -o confidential/patent-disclosure.md.gpg confidential/patent-disclosure.md
 ```
 
-## نکات مهم
+## Important Notes
 
-- کلید خصوصی و passphrase خودتان را هرگز در چت یا در ریپو قرار ندهید.
-- قبل از commit همیشه `git status` بزنید تا مطمئن شوید فقط فایل `.gpg` staged شده، نه نسخه متنی.
-- برای اطمینان بیشتر (مثلاً اگر ایده هنوز به ثبت نرسیده)، بهتر است اصلِ سند تا قبل از تسلیم
-  اظهارنامه اصلاً وارد هیچ ریپوی گیتی نشود، حتی رمزنگاری‌شده — و در یک فضای خصوصی و محدود
-  (مثل یک سند آفلاین یا Vault شرکتی) نگه‌داری شود.
+- Never put your private key and passphrase in chat or in the repo.
+- Before committing, always run `git status` to make sure only the `.gpg` file is staged, not the plaintext version.
+- For extra assurance (for example, if the idea has not yet been filed), it is better for the original document
+  never to enter any git repository before submitting the application, even encrypted — and to be kept in a private, restricted space
+  (such as an offline document or a corporate Vault).

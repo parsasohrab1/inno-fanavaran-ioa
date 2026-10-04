@@ -5,7 +5,7 @@ import { plantAlerts } from "@/lib/mock-data";
 export default function AlertsPage() {
   return (
     <>
-      <Topbar title="هشدارها" />
+      <Topbar title="Alerts" />
       <main className="flex-1 space-y-3 p-6">
         {plantAlerts.map((alert) => (
           <div
@@ -15,7 +15,7 @@ export default function AlertsPage() {
             <div>
               <p className="font-medium text-slate-800">{alert.title}</p>
               <p className="text-xs text-slate-500">
-                {alert.source} · {alert.createdAt} · {alert.acknowledged ? "تایید شده" : "تایید نشده"}
+                {alert.source} · {alert.createdAt} · {alert.acknowledged ? "Acknowledged" : "Not acknowledged"}
               </p>
             </div>
             <SeverityBadge severity={alert.severity} />

@@ -1,63 +1,63 @@
 # inno-fanavaran-ioa
-بخش اول: شناخت محصولات، ورودی‌ها و خروجی‌های پتروشیمی فناوران
-بر اساس اطلاعات موجود، پتروشیمی فناوران (تأسیس ۱۳۷۷ در منطقه ویژه اقتصادی پتروشیمی بندر امام خمینی) دارای مشخصات زیر است:
+Part One: Understanding the Products, Inputs and Outputs of Fanavaran Petrochemical
+Based on available information, Fanavaran Petrochemical (founded in 1377 [1998] in the Bandar Imam Khomeini Petrochemical Special Economic Zone) has the following characteristics:
 
-ویژگی	شرح
-محصولات اصلی	متانول (ظرفیت اسمی ۱ میلیون تن در سال)، اسید استیک (۱۵۰ هزار تن)، مونوکسید کربن (۱۴۰ هزار تن)
-خوراک ورودی	گاز طبیعی
-کاربرد محصولات	تولید اسید استیک، فرم‌آلدئید، حلال‌ها، داروسازی، رنگ‌ها
-موقعیت	جنوب غربی ایران، منطقه ویژه اقتصادی پتروشیمی، مساحت ۲۵ هکتار
-بخش دوم: SRS (Software Requirements Specification) دقیق
-1. هدف سند
-این سند الزامات نرم‌افزاری دستیار هوشمند اپراتور (Intelligent Operator Assistant - IOA) را برای پتروشیمی فناوران تعریف می‌کند. سیستم با بهره‌گیری از مدل‌های زبانی بزرگ، به اپراتورهای اتاق کنترل در عیب‌یابی، تحلیل آلارم‌ها و تصمیم‌گیری عملیاتی کمک می‌کند.
+Feature	Description
+Main products	Methanol (nominal capacity 1 million tons per year), acetic acid (150 thousand tons), carbon monoxide (140 thousand tons)
+Feed input	Natural gas
+Product applications	Production of acetic acid, formaldehyde, solvents, pharmaceuticals, paints
+Location	Southwest Iran, Petrochemical Special Economic Zone, area of 25 hectares
+Part Two: Detailed SRS (Software Requirements Specification)
+1. Document Purpose
+This document defines the software requirements for the Intelligent Operator Assistant (IOA) for Fanavaran Petrochemical. Using large language models, the system helps control room operators with troubleshooting, alarm analysis and operational decision-making.
 
-2. شرح کلی سیستم
-2.1 چشم‌انداز محصول
-IOA یک داشبورد هوشمند مبتنی بر LLM است که به صورت بلادرنگ داده‌های فرآیندی واحدهای متانول، اسید استیک و مونوکسید کربن را دریافت، تحلیل و به اپراتور توصیه‌های عملیاتی ارائه می‌دهد. این سیستم با رویکرد Multi-Agent LLM و Retrieval-Augmented Generation (RAG) طراحی می‌شود.
+2. System Overview
+2.1 Product Vision
+IOA is an LLM-based intelligent dashboard that receives and analyzes, in real time, process data of the methanol, acetic acid and carbon monoxide units and provides operational recommendations to the operator. The system is designed with a Multi-Agent LLM and Retrieval-Augmented Generation (RAG) approach.
 
-2.2 کاربران سیستم
-اپراتورهای اتاق کنترل: کاربران اصلی که با داشبورد تعامل دارند.
+2.2 System Users
+Control room operators: primary users who interact with the dashboard.
 
-مهندسین فرآیند: برای تحلیل عمیق‌تر و به‌روزرسانی دانش سیستم.
+Process engineers: for deeper analysis and updating the system's knowledge.
 
-مدیران فنی: برای نظارت بر عملکرد سیستم و دریافت گزارش‌های تحلیلی.
+Technical managers: to monitor system performance and receive analytical reports.
 
-3. الزامات عملکردی (Functional Requirements)
-کد	الزام	شرح
-FR-01	دریافت داده‌های بلادرنگ	اتصال به سیستم‌های کنترلی (مانند DCS) برای دریافت لحظه‌ای دما، فشار، دبی، سطح مخازن و سایر پارامترهای فرآیندی واحدهای متانول، اسید استیک و CO
-FR-02	مدیریت و تحلیل آلارم	دریافت تمامی آلارم‌های سیستم، اولویت‌بندی هوشمند آنها بر اساس شدت و ریسک، و ارائه تحلیل علت ریشه‌ای (Root Cause Analysis) به زبان ساده
-FR-03	تبدیل آلارم به زبان طبیعی	تبدیل داده‌های ساختاریافته آلارم به توصیف‌های معنایی قابل فهم برای LLM (مانند: "دمای راکتور واحد متانول از ۳۵۰ درجه عبور کرده و فشار در حال افزایش است")
-FR-04	عیب‌یابی هوشمند	استفاده از LLM برای تحلیل زنجیره‌ای علت‌ها و ارائه پیشنهادات گام‌به‌گام برای رفع عیب
-FR-05	توصیه‌گر عملیاتی	ارائه توصیه‌های عملیاتی مبتنی بر بهترین شیوه‌ها و مستندات فنی موجود (تغییر دما، تنظیم شیرها، کاهش/افزایش خوراک و ...)
-FR-06	جستجوی دانش تاریخی	با استفاده از RAG، جستجو در مستندات فنی، گزارش‌های قبلی و دستورالعمل‌های عملیاتی برای یافتن موارد مشابه
-FR-07	داشبورد بصری	نمایش گرافیکی داده‌های فرآیندی، وضعیت آلارم‌ها، مسیرهای احتمالی عیب و توصیه‌ها به صورت نمودار، رنگ‌بندی و نقشه حرارتی
-FR-08	گفتگوی تعاملی	امکان مکالمه به زبان فارسی با اپراتور برای پرسش و پاسخ درباره وضعیت فرآیند
-FR-09	پیش‌بینی آلارم	تحلیل روند داده‌ها و هشدار پیش از وقوع آلارم (مشابه نمونه Honeywell با ۵-۱۰ دقیقه پیش‌بینی)
-FR-10	ثبت و گزارش‌گیری	ثبت تمامی تعاملات، توصیه‌ها و اقدامات انجام شده برای ممیزی و بهبود مدل
-4. ورودی‌ها و خروجی‌های سیستم
-ورودی‌ها (Inputs)
-نوع ورودی	منبع	مثال
-داده‌های فرآیندی بلادرنگ	DCS / SCADA	دما، فشار، دبی، سطح، ترکیب خروجی
-آلارم‌ها	سیستم اعلام حریق و گاز، DCS	آلارم فشار بالا، دمای بالا، نشتی
-مستندات فنی	پایگاه داده شرکت	P&ID، دستورالعمل‌های عملیاتی، گزارش‌های پیشین
-ورودی متنی اپراتور	چت‌بات	"چرا دمای راکتور واحد متانول افزایش یافته؟"
-خروجی‌ها (Outputs)
-نوع خروجی	مقصد	مثال
-توصیه‌های عملیاتی	صفحه نمایش اپراتور	"کاهش ۵٪ خوراک گاز طبیعی به واحد متانول و بررسی شیر کنترل PV-203"
-تحلیل علت ریشه‌ای	داشبورد	"افزایش دمای راکتور ناشی از کاهش دبی آب خنک‌کننده مبدل E-101 است"
-هشدارهای پیش‌بینی‌کننده	داشبورد	"پیش‌بینی افزایش فشار کمپرسور K-201 در ۸ دقیقه آینده"
-گزارش‌های تحلیلی	ایمیل / سیستم گزارش‌گیری	گزارش روزانه عملکرد واحدها و آلارم‌های مدیریت شده
-5. معماری فنی پیشنهادی
+3. Functional Requirements
+Code	Requirement	Description
+FR-01	Real-time data acquisition	Connect to control systems (such as DCS) to receive instantaneous temperature, pressure, flow, tank levels and other process parameters of the methanol, acetic acid and CO units
+FR-02	Alarm management and analysis	Receive all system alarms, prioritize them intelligently based on severity and risk, and provide root cause analysis in plain language
+FR-03	Alarm conversion to natural language	Convert structured alarm data into semantic descriptions understandable to the LLM (for example: "The methanol unit reactor temperature has exceeded 350 degrees and pressure is rising")
+FR-04	Intelligent troubleshooting	Use the LLM for chained cause analysis and provide step-by-step suggestions to fix the fault
+FR-05	Operational advisor	Provide operational recommendations based on best practices and available technical documentation (changing temperature, adjusting valves, reducing/increasing feed, etc.)
+FR-06	Historical knowledge search	Using RAG, search technical documents, previous reports and operating procedures to find similar cases
+FR-07	Visual dashboard	Graphical display of process data, alarm status, probable fault paths and recommendations as charts, color coding and heat maps
+FR-08	Interactive conversation	Ability to converse in Persian with the operator for questions and answers about the process status
+FR-09	Alarm prediction	Analyze data trends and warn before an alarm occurs (similar to the Honeywell example with 5-10 minutes of prediction)
+FR-10	Logging and reporting	Record all interactions, recommendations and actions taken for auditing and model improvement
+4. System Inputs and Outputs
+Inputs
+Input type	Source	Example
+Real-time process data	DCS / SCADA	Temperature, pressure, flow, level, output composition
+Alarms	Fire and gas alarm system, DCS	High pressure, high temperature, leak alarms
+Technical documents	Company database	P&ID, operating procedures, previous reports
+Operator text input	Chatbot	"Why has the methanol unit reactor temperature increased?"
+Outputs
+Output type	Destination	Example
+Operational recommendations	Operator screen	"Reduce natural gas feed to the methanol unit by 5% and check control valve PV-203"
+Root cause analysis	Dashboard	"The reactor temperature increase is caused by a reduction in cooling water flow to exchanger E-101"
+Predictive alerts	Dashboard	"Compressor K-201 pressure is predicted to increase in the next 8 minutes"
+Analytical reports	Email / reporting system	Daily report on unit performance and managed alarms
+5. Proposed Technical Architecture
 text
 ┌─────────────────────────────────────────────────────────────┐
-│                    لایه نمایش (Dashboard)                    │
+│                    Presentation Layer (Dashboard)            │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────────────┐ │
-│  │نمودارها  │ │وضعیت آلارم│ │چت‌بات    │ │توصیه‌های عملیاتی│ │
+│  │Charts    │ │Alarm     │ │Chatbot   │ │Operational     │ │
 │  └──────────┘ └──────────┘ └──────────┘ └────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────┐
-│                    لایه منطق (LLM Engine)                    │
+│                    Logic Layer (LLM Engine)                  │
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │   Multi-Agent LLM Framework                         │    │
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌───────┐ │    │
@@ -65,21 +65,21 @@ text
 │  │  └──────────┘ └──────────┘ └──────────┘ └───────┘ │    │
 │  └─────────────────────────────────────────────────────┘    │
 │  ┌─────────────────────────────────────────────────────┐    │
-│  │   RAG Module (دانش فنی + مستندات + تاریخچه)        │    │
+│  │   RAG Module (technical knowledge + docs + history) │    │
 │  └─────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────┐
-│                    لایه داده (Data Layer)                    │
+│                    Data Layer                                │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────────────┐ │
-│  │DCS/SCADA │ │تاریخچه   │ │مستندات   │ │Knowledge Base  │ │
-│  │Real-time │ │Alarms    │ │فنی       │ │(Vector DB)     │ │
+│  │DCS/SCADA │ │History   │ │Technical │ │Knowledge Base  │ │
+│  │Real-time │ │Alarms    │ │Documents │ │(Vector DB)     │ │
 │  └──────────┘ └──────────┘ └──────────┘ └────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
-6. داده‌های سنتتیک (Synthetic Data)
-در ادامه، نمونه‌ای از داده‌های سنتتیک برای آموزش و تست سیستم ارائه می‌شود:
+6. Synthetic Data
+Below is a sample of synthetic data for training and testing the system:
 
-6.1 داده‌های فرآیندی بلادرنگ (فرمت JSON)
+6.1 Real-Time Process Data (JSON format)
 json
 [
   {
@@ -111,7 +111,7 @@ json
     }
   }
 ]
-6.2 داده‌های آلارم (فرمت JSON)
+6.2 Alarm Data (JSON format)
 json
 [
   {
@@ -119,16 +119,16 @@ json
     "timestamp": "2026-08-24T10:30:00Z",
     "unit": "Methanol",
     "tag": "T-101",
-    "description": "دمای راکتور R-101 از حد مجاز 350°C عبور کرده است",
+    "description": "Reactor R-101 temperature has exceeded the allowed limit of 350°C",
     "severity": "CRITICAL",
     "current_value": 352.4,
     "threshold": 350.0,
     "unit": "°C",
     "status": "ACTIVE",
     "possible_causes": [
-      "کاهش دبی آب خنک‌کننده مبدل E-101",
-      "افزایش ناگهانی خوراک گاز طبیعی",
-      "رسوب‌گذاری در مبدل حرارتی"
+      "Reduced cooling water flow to exchanger E-101",
+      "Sudden increase in natural gas feed",
+      "Fouling in the heat exchanger"
     ]
   },
   {
@@ -136,94 +136,94 @@ json
     "timestamp": "2026-08-24T10:32:15Z",
     "unit": "CO",
     "tag": "P-301",
-    "description": "فشار خط انتقال CO کمتر از حد مجاز",
+    "description": "CO transfer line pressure is below the allowed limit",
     "severity": "WARNING",
     "current_value": 1.8,
     "threshold": 2.0,
     "unit": "bar",
     "status": "ACTIVE",
     "possible_causes": [
-      "نشتی در خط انتقال",
-      "کاهش تولید واحد CO",
-      "بسته شدن جزئی شیر PV-301"
+      "Leak in the transfer line",
+      "Reduced production of the CO unit",
+      "Partial closure of valve PV-301"
     ]
   }
 ]
-6.3 داده‌های دانش پایه (برای RAG)
+6.3 Knowledge Base Data (for RAG)
 json
 [
   {
     "doc_id": "DOC-001",
     "category": "SOP",
     "unit": "Methanol",
-    "title": "دستورالعمل مدیریت افزایش دمای راکتور R-101",
-    "content": "در صورت افزایش دمای راکتور R-101 به بالای 350°C: 1) بررسی دبی آب خنک‌کننده مبدل E-101 و افزایش در صورت نیاز. 2) کاهش 5-10% خوراک گاز طبیعی. 3) در صورت ادامه روند، واحد را به صورت کنترل‌شده خاموش کنید.",
+    "title": "Procedure for managing reactor R-101 temperature increase",
+    "content": "If the temperature of reactor R-101 rises above 350°C: 1) Check the cooling water flow to exchanger E-101 and increase it if needed. 2) Reduce natural gas feed by 5-10%. 3) If the trend continues, shut down the unit in a controlled manner.",
     "tags": ["reactor", "temperature", "high_alarm", "R-101"]
   },
   {
     "doc_id": "DOC-002",
     "category": "Incident_Report",
     "unit": "CO",
-    "title": "گزارش حادثه کاهش فشار خط CO - 1402/05/12",
-    "content": "در تاریخ 1402/05/12، فشار خط انتقال CO به 1.7 bar کاهش یافت. علت: نشتی در اتصال فلنج خط خروجی کمپرسور. اقدام: تعویض گسکت و بازرسی کلیه اتصالات.",
+    "title": "Incident report: CO line pressure drop - 1402/05/12",
+    "content": "On 1402/05/12, the CO transfer line pressure dropped to 1.7 bar. Cause: leak at a flange connection of the compressor discharge line. Action: replaced the gasket and inspected all connections.",
     "tags": ["CO", "pressure", "leak", "flange"]
   },
   {
     "doc_id": "DOC-003",
     "category": "Best_Practice",
     "unit": "Acetic_Acid",
-    "title": "بهینه‌سازی شرایط عملیاتی واحد اسید استیک",
-    "content": "برای افزایش بازده واحد اسید استیک، نسبت خوراک متانول به مونوکسید کربن باید در محدوده 1.05-1.10 حفظ شود. دمای راکتور در 118-120°C و فشار در 3.0-3.5 bar تنظیم گردد.",
+    "title": "Optimizing the operating conditions of the acetic acid unit",
+    "content": "To increase the yield of the acetic acid unit, the methanol-to-carbon-monoxide feed ratio must be kept in the range of 1.05-1.10. Set the reactor temperature at 118-120°C and the pressure at 3.0-3.5 bar.",
     "tags": ["Acetic_Acid", "optimization", "operating_conditions"]
   }
 ]
-6.4 نمونه تعامل چت‌بات (ورودی/خروجی)
-ورودی اپراتور:
+6.4 Sample Chatbot Interaction (Input/Output)
+Operator input:
 
-"چرا دمای راکتور واحد متانول بالا رفته؟ چه کاری باید انجام دهم؟"
+"Why has the methanol unit reactor temperature gone up? What should I do?"
 
-خروجی سیستم (LLM Response):
+System output (LLM Response):
 
-بر اساس تحلیل داده‌های بلادرنگ:
+Based on real-time data analysis:
 
-علت احتمالی: کاهش دبی آب خنک‌کننده مبدل E-101 از ۱۲۰ به ۹۵ مترمکعب در ساعت در ۵ دقیقه گذشته.
+Probable cause: cooling water flow to exchanger E-101 dropped from 120 to 95 cubic meters per hour over the past 5 minutes.
 
-توصیه‌های عملیاتی (اولویت‌بندی شده):
+Operational recommendations (prioritized):
 
-فوری: دبی آب خنک‌کننده را به ۱۲۰ مترمکعب برگردانید (شیر CV-101 را ۱۵٪ باز کنید).
+Immediate: Return the cooling water flow to 120 cubic meters (open valve CV-101 by 15%).
 
-پیگیری: پس از تثبیت دما، مبدل E-101 را از نظر رسوب‌گذاری بررسی کنید (گزارش مشابه در ۱۴۰۱/۰۹/۱۲ ثبت شده است).
+Follow-up: After the temperature stabilizes, inspect exchanger E-101 for fouling (a similar report was recorded on 1401/09/12).
 
-پیشگیری: کاهش تدریجی خوراک گاز طبیعی به میزان ۳٪ برای جلوگیری از تکرار.
+Prevention: Gradually reduce natural gas feed by 3% to prevent recurrence.
 
-منابع: مستند SOP-001 و گزارش حادثه INC-2023-045.
+Sources: SOP-001 document and incident report INC-2023-045.
 
 ---
 
-## بخش سوم: زیرساخت فرانت‌اند (Frontend Scaffold)
+## Part Three: Frontend Scaffold
 
-پیاده‌سازی اولیه داشبورد IOA با **Next.js (App Router) + TypeScript + Tailwind CSS**، راست‌چین و فارسی، شامل صفحات نمای کلی، تولید، تجهیزات، هشدارها، گزارش‌ها و تنظیمات (در حال حاضر با داده نمونه/mock — اتصال به DCS/SCADA و RAG واقعی طبق FR-01 تا FR-10 در فازهای بعدی انجام می‌شود).
+Initial implementation of the IOA dashboard with **Next.js (App Router) + TypeScript + Tailwind CSS**, with pages for overview, production, equipment, alerts, reports and settings (currently with sample/mock data — connection to the real DCS/SCADA and RAG per FR-01 to FR-10 will be done in later phases).
 
-### اجرا
+### Running
 
 ```bash
 npm install
 npm run dev
 ```
 
-سپس آدرس [http://localhost:3000](http://localhost:3000) را باز کنید.
+Then open [http://localhost:3000](http://localhost:3000).
 
-### ساخت نسخه Production
+### Building the Production Version
 
 ```bash
 npm run build
 npm start
 ```
 
-### ساختار پوشه‌ها
+### Folder Structure
 
-- `src/app/(dashboard)/` — صفحات داشبورد (نمای کلی، تولید، تجهیزات، هشدارها، گزارش‌ها، تنظیمات)
-- `src/components/` — کامپوننت‌های مشترک (Sidebar، Topbar، KPI Card، Badgeها)
-- `src/lib/types.ts` — تایپ‌های دامنه (Equipment، ProductionLine، PlantAlert، ...)
-- `src/lib/mock-data.ts` — داده نمونه تا زمان اتصال به DCS/SCADA واقعی
-- `confidential/` — مستندات محرمانه (مثل بررسی‌های ثبت اختراع)، فقط به‌صورت رمزنگاری‌شده (`.gpg`) قابل commit است — به `confidential/README.md` مراجعه کنید.
+- `src/app/(dashboard)/` — dashboard pages (overview, production, equipment, alerts, reports, settings)
+- `src/components/` — shared components (Sidebar, Topbar, KPI Card, Badges)
+- `src/lib/types.ts` — domain types (Equipment, ProductionLine, PlantAlert, ...)
+- `src/lib/mock-data.ts` — sample data until connection to the real DCS/SCADA
+- `confidential/` — confidential documents (such as patent reviews), which can only be committed in encrypted form (`.gpg`) — see `confidential/README.md`.

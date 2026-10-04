@@ -1,10 +1,10 @@
 import type { AlertSeverity, EquipmentStatus } from "@/lib/types";
 
 const statusStyles: Record<EquipmentStatus, { label: string; className: string }> = {
-  running: { label: "در حال کار", className: "bg-emerald-50 text-emerald-700" },
-  idle: { label: "بی‌کار", className: "bg-slate-100 text-slate-600" },
-  maintenance: { label: "در تعمیر", className: "bg-amber-50 text-amber-700" },
-  fault: { label: "خرابی", className: "bg-rose-50 text-rose-700" },
+  running: { label: "Running", className: "bg-emerald-50 text-emerald-700" },
+  idle: { label: "Idle", className: "bg-slate-100 text-slate-600" },
+  maintenance: { label: "Under maintenance", className: "bg-amber-50 text-amber-700" },
+  fault: { label: "Fault", className: "bg-rose-50 text-rose-700" },
 };
 
 export function StatusBadge({ status }: { status: EquipmentStatus }) {
@@ -17,9 +17,9 @@ export function StatusBadge({ status }: { status: EquipmentStatus }) {
 }
 
 const severityStyles: Record<AlertSeverity, { label: string; className: string }> = {
-  critical: { label: "بحرانی", className: "bg-rose-50 text-rose-700" },
-  warning: { label: "هشدار", className: "bg-amber-50 text-amber-700" },
-  info: { label: "اطلاع‌رسانی", className: "bg-sky-50 text-sky-700" },
+  critical: { label: "Critical", className: "bg-rose-50 text-rose-700" },
+  warning: { label: "Warning", className: "bg-amber-50 text-amber-700" },
+  info: { label: "Information", className: "bg-sky-50 text-sky-700" },
 };
 
 export function SeverityBadge({ severity }: { severity: AlertSeverity }) {

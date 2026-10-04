@@ -6,7 +6,7 @@ import { equipmentList, kpiSummaries, plantAlerts, productionLines } from "@/lib
 export default function OverviewPage() {
   return (
     <>
-      <Topbar title="نمای کلی" />
+      <Topbar title="Overview" />
       <main className="flex-1 space-y-6 p-6">
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {kpiSummaries.map((kpi) => (
@@ -16,7 +16,7 @@ export default function OverviewPage() {
 
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="mb-4 font-bold text-slate-800">وضعیت خطوط تولید</h2>
+            <h2 className="mb-4 font-bold text-slate-800">Production Line Status</h2>
             <div className="space-y-3">
               {productionLines.map((line) => (
                 <div key={line.id} className="flex items-center justify-between text-sm">
@@ -30,7 +30,7 @@ export default function OverviewPage() {
           </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="mb-4 font-bold text-slate-800">آخرین هشدارها</h2>
+            <h2 className="mb-4 font-bold text-slate-800">Latest Alerts</h2>
             <div className="space-y-3">
               {plantAlerts.map((alert) => (
                 <div key={alert.id} className="flex items-center justify-between text-sm">
@@ -46,7 +46,7 @@ export default function OverviewPage() {
         </section>
 
         <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="mb-4 font-bold text-slate-800">وضعیت تجهیزات</h2>
+          <h2 className="mb-4 font-bold text-slate-800">Equipment Status</h2>
           <div className="space-y-3">
             {equipmentList.map((eq) => (
               <div key={eq.id} className="flex items-center justify-between text-sm">
